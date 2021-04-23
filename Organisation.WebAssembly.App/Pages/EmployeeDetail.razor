@@ -1,0 +1,61 @@
+﻿@page "/employeedetail/{EmployeeId}"
+
+<section class="employee-detail">
+    <h1 class="page-title">Details for @Employee.FirstName @Employee.LastName</h1>
+
+    <div class="col-12 row">
+        <div class="col-10 row">
+            <div class="col-xs-12 col-sm-8">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Employee ID</label>
+                    <div class="col-sm-8">
+                        <label type="text" class="form-control-plaintext">@Employee.EmployeeId</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">First name</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Employee.FirstName</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Last name</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Employee.LastName</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Gender</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Employee.Gender</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Position</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Employee.Position</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Department Id</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Employee.DepartmentId</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Salary</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Employee.Salary</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+

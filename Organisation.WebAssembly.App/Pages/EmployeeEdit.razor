@@ -1,0 +1,76 @@
+﻿@page "/employeeedit/"
+@page "/employeeedit/{EmployeeId}"
+@using Organisation.WebAssembly.App.Models;
+
+
+@if (!Saved)
+{
+    <section class="employee-edit">
+        <h1 class="page-title">Details for @Employee.FirstName @Employee.LastName</h1>
+        <EditForm Model="@Employee" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInvalidSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary></ValidationSummary>
+
+            <div class="form-group row">
+                <label for="firstName" class="col-sm-3">First Name: </label>
+                <InputText id="firstName" class="form-control col-sm-8" @bind-Value="@Employee.FirstName" placeholder="Enter first name"></InputText>
+                <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => Employee.FirstName)" />
+            </div>
+
+            <div class="form-group row">
+                <label for="lastName" class="col-sm-3">Last Name: </label>
+                <InputText id="lastName" class="form-control col-sm-8" @bind-Value="@Employee.LastName" placeholder="Enter last name"></InputText>
+                <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => Employee.LastName)" />
+            </div>
+
+            <div class="form-group row">
+                <label for="gender" class="col-sm-3">Gender: </label>
+                <CustomInputSelect id="gender" class="form-control col-sm-8" @bind-Value=@Employee.Gender>
+                    @foreach (var item in GenderList)
+                        {
+                        <option value="@item.Code"> @item.Name</option>
+                        }
+                </CustomInputSelect>
+            </div>
+
+            <div class="form-group row">
+                <label for="position" class="col-sm-3">Position: </label>
+                <InputText id="position" class="form-control col-sm-8" @bind-Value="@Employee.Position" placeholder="Enter position"></InputText>
+                <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => Employee.Position)" />
+            </div>
+
+            <div class="form-group row">
+                <label for="departmentId" class="col-sm-3">Department: </label>
+                <InputSelect id="departmentId" class="form-control col-sm-8" @bind-Value=@DepartmentId>
+                    @foreach (var department in Departments)
+                        {
+                        <option value="@department.Id"> @department.DepartmentName</option>
+                        }
+                </InputSelect>
+            </div>
+
+            <div class="form-group row">
+                <label for="salary" class="col-sm-3">Salary: </label>
+                <InputNumber id="salary" class="form-control col-sm-8" @bind-Value="@Employee.Salary" placeholder="Enter salary"></InputNumber>
+            </div>
+
+            <button type="submit" class="btn btn-primary edit-btn">Save employee</button>
+
+            @if (Employee.EmployeeId > 0)
+            {
+                <a class="btn btn-danger" @onclick="@DeleteEmployee">
+                    Delete
+                </a>
+            }
+
+            <a class="btn btn-outline-primary" @onclick="@NavigateToOverview">Back to list</a>
+        </EditForm>
+    </section>
+
+}
+else
+{
+    <div class="alert @StatusClass">@Message</div>
+
+
+}
